@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+        
+        <!-- 扫描@Controller注解，把加上注解的类加载到内存中 -->
+        <context:component-scan base-package="com.zhangfengbin.controller"/>
+        
+        <!-- 为什么要配置三大组件：
+        	因为每一次请求过来都要进入处理器映射器和处理器适配器来判断映射器，和处理器是怎么开发的
+        	判断多词怎么开发，那么就会降低我们的访问效率，
+        	所以我们要手动配置处理器映射器和处理器适配器
+         -->
+        <!-- 配置当前系统中最新版本的注解形式的处理器映射器和处理器适配器 -->
+        <mvc:annotation-driven/>
+        
+        
+        <!-- 视图解析器 
+        	简化代码量
+        	返回视图解析的时候，视图解析器帮我们把前缀和后缀拼接上
+        	前缀 + 视图名称 + 后缀
+        -->
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        	<!-- 配置前缀 -->
+        	<property name="prefix" value="WEB-INF/jsp/"/>
+        	<!-- 配置后缀 -->
+        	<property name="suffix" value=".jsp"/>
+        </bean>
+        
+        
+        
+        
+</beans>
