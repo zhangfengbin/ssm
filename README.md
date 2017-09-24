@@ -1,0 +1,2 @@
+# ssm
+creat ssm init
